@@ -22,9 +22,21 @@ class PostController extends AbstractController
         $em->flush();
         */
         $repository = $this->getDoctrine()->getRepository(Blog::class);
-        dump($repository);
+        
+        $article = $repository->findAll();
+        dump($article);
         return $this->render('post/index.html.twig', [
             'controller_name' => 'PostController',
+            'articles' => $article,
+        ]);
+    }
+    /**
+     * @Route("/{title}",name="article")
+     */
+
+    public function article($title){
+        return $this->render('post/article.html.twig', [
+            'Article'=> $this->getDoctrine()->getRepository(Blog::class)->findOneBy(['title'=>$title]),
         ]);
     }
 }
