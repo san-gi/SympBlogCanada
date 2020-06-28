@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PhotosController!
+{% endblock %}
+
+{% block body %}
+
+
+
+	<div class="container ">
+		<div class="d-flex flex-row justify-content-around flex-wrap">
+			{% for pfol in plist %}
+				{% set name = pfol|first|split('/')|slice(1, 1)|first %}
+				<div class="card col-lg-3 col-md-4 col-6 m-1" style="width: 18rem;">
+					<img class="card-img-top" src="{{pfol|first}}" alt="photo non trouver">
+					<div class="card-body">
+						<h5 class="card-title">{{name}}</h5>
+						<p class="card-text">Lorem Ipsum</p>
+					
+					</div>
+				</div>
+				<!--
+					<div class="container bg-dark p-3" id="{{name}}">
+					<p></p>
+						<div class="row text-center text-lg-left">																		
+						{% for p in pfol %}
+						<figure class="col-lg-3 col-md-4 col-6">																									
+						<img alt="photo" src="{{p}}" class="img-fluid">
+						</figure>																				
+						{% endfor %}
+						</div>
+						</div>
+				-->
+			{% endfor %}
+		</div>
+	</div>
+
+{% endblock %}
